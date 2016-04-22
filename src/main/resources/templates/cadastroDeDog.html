@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="templateMaster">
+
+<head>
+<meta charset="UTF-8" />
+<title>Cadastro Dog</title>
+</head>
+
+<section layout:fragment="conteudo">
+	<form class="form-horizontal" method="POST" action="/dogs" th:object="${dog}">
+	
+		<div layout:include="validacao"></div>
+		<div layout:include="mensagem"></div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="clearfix">
+					<h1 class="panel-title dog-titulo-panel">Cadastro de novos dogs!!!</h1>
+					<a class="btn btn-link dog-link-panel" href="/dogs">Voltar para pesquisa</a>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<input type="hidden" th:field="*{idCachorro}"/>
+			
+				<div class="form-group" th:classappend="${#fields.hasErrors('nomeCachorro')} ? has-error">
+					<label for="nome" class="col-sm-2 control-label">Nome do dog</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="nomeCachorro" th:field="*{nomeCachorro}"/>
+					</div>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('dataAdocao')} ? has-error">
+					<label for="dataAdocao" class="col-sm-2 control-label">Data da adoção</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="dataAdocao"	th:field="*{dataAdocao}" 
+						       data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+							   data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="idade" class="col-sm-2 control-label">Idade do dog</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="idade" th:field="*{idadeDog}" />
+					</div>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('raca')} ? has-error">
+					<label for="raca" class="col-sm-2 control-label">Raça</label>
+					<div class="col-sm-2">
+						
+<!-- 						<label th:each="raca : ${listaEnumDog}" class="radio-inline"> -->
+<!-- 							<input type="radio" th:value="${raca}" th:field="*{raca}"/> -->
+<!-- 							<span th:text="${raca.descricao}"></span> -->
+<!-- 						</label>  -->
+					
+					
+						<select class="form-control" name="raca" th:field="*{raca}">
+							<option 
+								th:each="raca : ${listaEnumDog}" 
+								th:value="${raca}" 
+								th:text="${raca.descricao}"
+								></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>
+
+</html>

@@ -1,0 +1,29 @@
+nav {
+	height: 172px;
+	background-color: #E6DCD0 !important;
+	border-color: #E6DCD0 !important;
+}
+.navbar-brand {
+	padding-top: 12px;
+}
+
+.panel-default {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.alert {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.dog-link-panel {
+	float: right;
+	padding: 0px;
+}
+
+.dog-titulo-panel {
+	float: left;
+	padding-top: 2px;
+}
+
